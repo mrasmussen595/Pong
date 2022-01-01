@@ -24,10 +24,17 @@ class Score(Turtle):
             x+=400
             self.pendown()
 
-    def score_p1(self,i):
-        self.goto(-200,300)
-        self.write(f"{i}", False, align= "center", font= ('Arial', 40, "bold"))
+    def score_write(self,p1, p2):
+        self.clear()
+        self.penup()
+        self.goto(-100,200)
+        self.pencolor("white")
+        self.pendown()
+        self.write(p1, False, align= "center", font= ('Arial', 40, "bold"))
+        self.penup()
+        self.goto(100,200)
+        self.pencolor("white")
+        self.pendown()
+        self.write(p2, False, align= "center", font= ('Arial', 40, "bold"))
     
-    def score_p2(self,x):
-        self.goto(200,300)
-        self.write(f"{x}", False, align= "center", font= ('Arial', 40, "bold"))
+  

@@ -2,7 +2,7 @@ from turtle import Turtle, xcor
 from score import Score
 import random
 
-class Ball(Turtle, Score):
+class Ball(Turtle):
 
     def __init__(self):
         super().__init__()
@@ -10,15 +10,23 @@ class Ball(Turtle, Score):
         self.shape("circle")
         self.shapesize(0.75,0.75,0.75)
         self.penup()
+        self.x_move = 0.75
+        self.y_move = 0.75
+        self.move_speed = 2
 
-    def ball_move(self, i, x):
-        new_x=self.xcor()+0.75
-        new_y=self.xcor()+0.75
+    def move(self):
+        new_x = self.xcor() + self.x_move
+        new_y = self.ycor() + self.y_move
         self.goto(new_x, new_y)
-        score = Score
-        if self.xcor()>580:
-            score.score_p1(i)
-        elif self.xcor()<580:
-            score.score_p1(x)
-        elif self.ycor()>580 or self.ycor()<-580:
-            self.setheading(380-self.heading)
+
+    def bounce_y(self):
+        self.y_move *= -1
+
+    def bounce_x(self):
+        self.x_move *= -1
+        self.move_speed *= 0.9
+
+    def reset_position(self):
+        self.goto(0, 0)
+        self.move_speed = 2
+        self.bounce_x()
